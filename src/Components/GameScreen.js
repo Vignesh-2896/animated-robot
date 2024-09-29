@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Loader from "react-loader-spinner";
 import { MemoryBox } from "./MemoryBox";
 import { GameScore } from "./GameScore";
 import { InfinitySpin } from "react-loader-spinner";
@@ -13,18 +12,18 @@ const GameScreen = () => {
   const [bestScore, setBestScore] = useState(0); // State to keep track of best score.
 
   let characterList = [
-    "Denki_Kaminari",
-    "Izuku_Midoriya",
-    "Ochaco_Uraraka",
-    "Eijiro_Kirishima",
-    "Shoto_Todoroki",
-    "Fumikage_Tokoyami",
-    "Katsuki_Bakugo",
-    "Toru_Hagakure",
-    "Nejire_Hado",
-    "Mina_Ashido",
-    "Minoru_Mineta",
-    "Tsuyu_Asui",
+    "1036",
+    "928",
+    "1303",
+    "1063",
+    "376",
+    "865",
+    "1293",
+    "1037",
+    "444",
+    "421",
+    "878",
+    "259",
   ];
 
   useEffect(() => {
@@ -32,17 +31,17 @@ const GameScreen = () => {
       characterList.forEach(async function (item) {
         let response = await fetchData(item);
         let tmpVar = imageList;
-        tmpVar[response.name] = response.images[1]; // Data is added to the imageList state as a key-value pair,
+        tmpVar[response.name] = response.images[0]; // Data is added to the imageList state as a key-value pair,
         setImageList(tmpVar); // with key being the character name, and value being the character iamge.
         if (Object.keys(imageList).length === 12) setIsLoading(false);
       });
     })();
   }, []);
 
-  const fetchData = async (character_name) => {
+  const fetchData = async (character_ID) => {
     // Fetch data for every character.
     let response = await fetch(
-      `https://myheroacademiaapi.com/api/character/${character_name}`
+      `https://dattebayo-api.onrender.com/characters/${character_ID}`
     );
     response = await response.json();
     return response;
@@ -105,24 +104,24 @@ const GameScreen = () => {
         </div>
       ) : (
         <div className="gamescreen">
-          <h1 style={{ textAlign: "center" }}>
-            My Hero Academia - Memory Game
-          </h1>
+          <h1 style={{ textAlign: "center" }}>Naruto - Memory Game</h1>
           <h4 style={{ textAlign: "center" }}>
             Score points by clicking on a new image every click. If you click
             the same image, it's Game Over
           </h4>
           <GameScore curScore={currentScore} bstScore={bestScore} />
-          {Object.keys(imageList).map(function (item) {
-            return (
-              <MemoryBox
-                key={item}
-                characterName={item}
-                characterImage={imageList[item]}
-                buttonAction={checkMemory}
-              />
-            );
-          })}
+          <div className="container">
+            {Object.keys(imageList).map(function (item) {
+              return (
+                <MemoryBox
+                  key={item}
+                  characterName={item}
+                  characterImage={imageList[item]}
+                  buttonAction={checkMemory}
+                />
+              );
+            })}
+          </div>
         </div>
       )}
     </div>

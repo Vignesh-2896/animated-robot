@@ -13,8 +13,8 @@ const MemoryBox = (props) => {
     >
       <div className="memory-box-image">
         <img
-          height="320"
-          width="300"
+          height="180"
+          width="180"
           alt={props.characterName}
           src={props.characterImage}
         />

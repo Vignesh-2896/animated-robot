@@ -1,6 +1,6 @@
 # Memory Card Game built using React.
 
-Welcome to the My Hero Academia Memory Game !
+Welcome to the Naruto Memory Game !
 
 ## Game Setting
 
@@ -13,6 +13,6 @@ But there are two caveats.
 
 ## Built With
 1. React
-2. [My Hero Academia API](https://myheroacademiaapi.com)
+2. [Naruto API](https://api-dattebayo.vercel.app/)
 
 [Live Demo](http://Vignesh-2896.github.io/animated-robot)
